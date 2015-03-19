@@ -4,31 +4,57 @@ public class Problems2Impl implements Problems2 {
 
     @Override
     public boolean isOdd(int number) {
-        return false;
+        boolean bool = (number%2 == 0) ? false : true;
+        return bool;
     }
 
     @Override
     public boolean isPrime(int number) {
-        // TODO Auto-generated method stub
-        return false;
+        
+        boolean isPrime = (number == 0 || number == 1) ? false : true;
+        
+        for(int i = 2; i <= (int)Math.sqrt(number); ++i) 
+                if(number%i==0) {
+                    isPrime = false;
+                    break;
+                }
+        return isPrime;
     }
 
     @Override
     public int min(int... array) {
-        // TODO Auto-generated method stub
-        return 0;
+        
+        int min = array[0];
+        for (int i = 1; i < array.length; ++i){
+            min = min<array[i] ? min : array[i];
+        }
+        return min;
     }
 
     @Override
     public int kthMin(int k, int[] array) {
-        // TODO Auto-generated method stub
-        return 0;
+        
+        int additionalVar;
+        for (int i = 0; i < array.length; ++i){
+            for(int j = i+1; j < array.length-1; ++j){
+                if (array[i] > array[j]) {
+                    additionalVar = array[j];
+                    array[j] = array[i];
+                    array[i] = additionalVar;
+                }
+            }            
+        } 
+        return array[k-1];
     }
 
     @Override
     public float getAverage(int[] array) {
-        // TODO Auto-generated method stub
-        return 0;
+        
+        float average = 0;
+        for (int i=0; i<array.length; i++){
+            average += array[i];
+        }
+        return average/array.length;
     }
 
     @Override
@@ -51,14 +77,28 @@ public class Problems2Impl implements Problems2 {
 
     @Override
     public long doubleFac(int n) {
-        // TODO Auto-generated method stub
-        return 0;
+        
+        int doubleFactorial = 1;
+        for (int i = 1; i <= 2; ++i){
+            doubleFactorial = 1;
+            while (n > 0) {
+                doubleFactorial *= n;
+                n--;
+            }
+            n = doubleFactorial;          
+        }
+        return doubleFactorial;
     }
 
     @Override
     public long kthFac(int k, int n) {
-        // TODO Auto-generated method stub
-        return 0;
+        
+        long kthFactorial = 1;
+        while (n > 0) {
+            kthFactorial *= n;
+            n-=k;
+        }
+        return kthFactorial;
     }
 
     @Override
