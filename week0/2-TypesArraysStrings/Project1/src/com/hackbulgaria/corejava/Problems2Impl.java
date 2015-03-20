@@ -59,9 +59,39 @@ public class Problems2Impl implements Problems2 {
 
     @Override
     public long getSmallestMultiple(int upperBound) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+
+        if (upperBound <= 1) { return 1; }
+        
+        int[] array = new int[upperBound];
+        for (int i = 0; i < upperBound; i++) {
+            array[i] = i+1;
+        }
+        
+        long smallestMultiple = 1;
+        int prime = 1;
+        boolean hasPrime = false;
+        
+        do {
+            for (int i = 0; i < upperBound; i++) {
+                if (isPrime(array[i])) {
+                    prime = array[i];
+                    hasPrime = true;
+                    break;
+                } else {
+                    prime = 1;
+                    hasPrime = false;
+                }
+            }
+        
+            for (int i = 0; i < upperBound; i++) {            
+                array[i] = (array[i]%prime != 0) ? array[i] : (int) array[i]/prime;                
+            }
+            
+            smallestMultiple *= prime;
+        }
+        while (hasPrime);
+        return smallestMultiple;
+    }        
 
     @Override
     public long getLargestPalindrome(long N) {
