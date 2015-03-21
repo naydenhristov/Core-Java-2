@@ -90,19 +90,45 @@ public class Problems2Impl implements Problems2 {
             smallestMultiple *= prime;
         }
         while (hasPrime);
+        
         return smallestMultiple;
     }        
 
+    private boolean isPalindrome (long number) {
+        
+        String str = "" + number;
+        int length = str.length();
+        
+        for(int i = 0;  i < (length/2); ++i) {
+            if (str.charAt(i)!=str.charAt(length-i-1)) return false;
+        }
+        
+        return true;
+    }
+
     @Override
     public long getLargestPalindrome(long N) {
-        // TODO Auto-generated method stub
+        for (long i = N; i > 0; i--) {            
+            if (isPalindrome(i)) {
+                return i;
+            }            
+        }
+        
         return 0;
     }
 
     @Override
     public int[] histogram(short[][] image) {
-        // TODO Auto-generated method stub
-        return null;
+
+        int[] histogram = new int[256];
+        
+        for (short i = 0; i < image.length; i++) {
+            for (short j = 0; j < image[0].length; j++) {
+                histogram[image[i][j]]++;
+            }
+        }
+        
+        return histogram;
     }
 
     @Override
@@ -187,14 +213,25 @@ public class Problems2Impl implements Problems2 {
 
     @Override
     public boolean isPalindrome(String argument) {
-        // TODO Auto-generated method stub
-        return false;
+
+        int length = argument.length();
+        
+        for(int i = 0;  i < (length/2); ++i) {
+            if (argument.charAt(i)!=argument.charAt(length-i-1)) return false;
+        }
+        return true;
     }
 
     @Override
     public boolean isPalindrome(int number) {
-        // TODO Auto-generated method stub
-        return false;
+        
+        String str = "" + number;
+        int length = str.length();
+        
+        for(int i = 0;  i < (length/2); ++i) {
+            if (str.charAt(i)!=str.charAt(length-i-1)) return false;
+        }
+        return true;
     }
 
     @Override
