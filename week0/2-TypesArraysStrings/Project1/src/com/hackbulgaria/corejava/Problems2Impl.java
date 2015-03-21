@@ -159,14 +159,56 @@ public class Problems2Impl implements Problems2 {
 
     @Override
     public int getOddOccurrence(int[] array) {
-        // TODO Auto-generated method stub
-        return 0;
+            
+        int[] arr = new int[array.length/2 + 1];
+        int counterChecked = 0;
+        int oddOcc = 1;
+        int element = array[0];
+                       
+        for (int i = 0; i < array.length; i++) {
+
+            element = array[i];
+            boolean same = false;
+
+            for (int j = 0; j < array.length / 2 + 1; j++) {
+                if (element == arr[j]) {
+                    same = true;
+                    oddOcc = 1;
+                    break;
+                }
+            }
+
+            if (same) {
+                continue;
+            } else {
+                for (int j = i + 1; j < array.length; j++) {
+                    if (element == array[j]) {
+                        oddOcc++;
+                    }
+                }
+                if (oddOcc % 2 != 0) {
+                    return element;
+                }
+            
+                arr[counterChecked] = element;
+                counterChecked++;
+                oddOcc = 1;
+            }
+        }
+
+        return element;
     }
 
     @Override
     public long pow(int a, int b) {
-        // TODO Auto-generated method stub
-        return 0;
+        
+        if (b == 0) { return 1; }
+        if (b == 1) { return a; }
+        if (b % 2 == 0) {
+            return pow(a, (int)b/2) * pow(a, (int)b/2);
+        } else { 
+            return pow(a, (int)b/2 + 1) * pow(a, (int)b/2);
+        }  
     }
 
     @Override
